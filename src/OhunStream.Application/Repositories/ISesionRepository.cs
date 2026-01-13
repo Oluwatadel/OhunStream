@@ -1,4 +1,6 @@
 ﻿
+using OhunStream.Domain.Aggregate;
+
 namespace OhunStream.Application.Repositories
 {
     public interface ISesionRepository

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using OhunStream.Application.Repositories;
+using OhunStream.Domain.Aggregate;
 
 namespace OhunStream.Infrastructure.Persistence.Persistence
 {
-    internal class DbContext
+    public class OhunStreamDbContext(DbContextOptions<OhunStreamDbContext> options) : DbContext(options)
     {
+        public DbSet<Session> Sessions { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

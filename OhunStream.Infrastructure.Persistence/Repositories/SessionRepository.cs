@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OhunStream.Application.Repositories;
 using OhunStream.Infrastructure.Persistence.Persistence;
+using OhunStream.Domain.Aggregate;
 
 namespace OhunStream.Infrastructure.Persistence.Repositories
 {
