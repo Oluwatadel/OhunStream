@@ -1,0 +1,6 @@
+@OhunStream.Api_HostAddress = http://localhost:5101
+
+GET {{OhunStream.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
