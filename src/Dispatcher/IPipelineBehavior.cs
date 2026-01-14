@@ -1,16 +1,16 @@
 ﻿namespace Dispatcher
 {
-    public delegate Task<TResponse> RequestHandlerDeligate<TResponse>();
+    public delegate Task<TResponse> RequestHandlerDelegate<TResponse>();
 
     public interface IPipelineBehavior<in TRequest, TResponse> where TRequest : notnull
     {
-        Task<TResponse> Handle(TRequest request, RequestHandlerDeligate<TResponse> next, CancellationToken cancellationToken);
+        Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken);
     }
 
-    public delegate Task RequestHandlerDeligate();
+    public delegate Task RequestHandlerDelegate();
 
     public interface IPipelineBehavior<in TRequest> where TRequest: notnull
     {
-        Task Handle(TRequest request, RequestHandlerDeligate next, CancellationToken cancellationToken);
+        Task Handle(TRequest request, RequestHandlerDelegate next, CancellationToken cancellationToken);
     }
 }

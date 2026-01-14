@@ -1,3 +1,5 @@
+using OhunStream.Api.ServiceExtension;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
+builder.Services.AddRequestHandlers();
+builder.Services.AddValidators();
+builder.Services.AddRepositories();
+builder.Services.ConfigureApiVersioning();
+builder.Services.ConfigureMvc();
 
 var app = builder.Build();
 

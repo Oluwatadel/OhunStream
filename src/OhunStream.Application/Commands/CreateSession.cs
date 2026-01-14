@@ -1,18 +1,30 @@
 ﻿using Dispatcher;
+using FluentValidation;
 using OhunStream.Domain.Aggregate.Enum;
 
 namespace OhunStream.Application.Commands
 {
-    public class CreateSession
+    public class StartSessionCommand
     {
         public record StartSessionRequest(SessionMode SessionMode, CancellationToken cancellationToken = default)
-            : IRequest<SessionResponse>;
+            : IRequest<StartSessionResponse>;
 
-        public record SessionResponse(Guid Id, SessionMode SessionMode, SessionStatus SessionStatus, Guid HostId, DateTime CreatedAt);
+        public record StartSessionResponse(Guid Id, SessionMode SessionMode, SessionStatus SessionStatus, Guid HostId, DateTime CreatedAt);
         
-        public async Task<SessionResponse> Handle(StartSessionRequest request)
+        public class CreateSessionCommandValidator : AbstractValidator<StartSessionRequest>
         {
-            return await Task.FromResult<SessionResponse>(new SessionResponse(
+            public CreateSessionCommandValidator()
+            {
+                RuleFor(cr => cr.SessionMode)
+                    .NotEmpty()
+                    .NotNull()
+                    .WithMessage("SessionMode is requide");
+            }
+        }
+
+        public async Task<StartSessionResponse> Handle(StartSessionRequest request)
+        {
+            return await Task.FromResult<StartSessionResponse>(new StartSessionResponse(
                 Guid.NewGuid(), SessionMode.Interactive, SessionStatus.Live, Guid.NewGuid(), DateTime.UtcNow));
         }
     }
