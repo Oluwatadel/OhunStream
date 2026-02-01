@@ -19,7 +19,7 @@ namespace Dispatcher
 
             var pipeline = pipelines
                 .Reverse()
-                .Aggregate((RequestHandlerDeligate<TResponse>)Core, (next, behavior) =>
+                .Aggregate((RequestHandlerDelegate<TResponse>)Core, (next, behavior) =>
                 () => behavior.Handle(request, next, cancellationToken));
 
             return await pipeline();
@@ -41,7 +41,7 @@ namespace Dispatcher
 
             var pipeline = pipelines
                 .Reverse()
-                .Aggregate((RequestHandlerDeligate)Core, (next, behavior) =>
+                .Aggregate((RequestHandlerDelegate)Core, (next, behavior) =>
                 () => behavior.Handle(request, next, cancellationToken));
             await pipeline();
         }
