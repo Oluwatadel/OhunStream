@@ -6,7 +6,7 @@ namespace OhunStream.Application.Commands
 {
     public class StartSessionCommand
     {
-        public record StartSessionRequest(SessionMode SessionMode, CancellationToken cancellationToken = default)
+        public record StartSessionRequest(SessionMode SessionMode)
             : IRequest<StartSessionResponse>;
 
         public record StartSessionResponse(Guid Id, SessionMode SessionMode, SessionStatus SessionStatus, Guid HostId, DateTime CreatedAt);

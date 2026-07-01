@@ -9,7 +9,7 @@ namespace OhunStream.Api.Controllers
     public class SessionsController(ISender sender) : ControllerBase
     {
         [HttpPost("start")]
-        public async Task<IActionResult> Start(StartSessionRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Start(StartSessionRequest request, CancellationToken cancellationToken = default)
         {
             var result = await sender.Send<StartSessionRequest, StartSessionResponse>(request, cancellationToken);
             return Ok(result);

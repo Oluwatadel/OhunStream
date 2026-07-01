@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.OpenApi.Models;
 using System.Security.Cryptography.Xml;
 
 namespace OhunStream.Api.ServiceExtension
@@ -34,6 +35,13 @@ namespace OhunStream.Api.ServiceExtension
             });
 
             return services;
+        }
+
+        public static IApplicationBuilder UseSwaggerAndSwaggerUI(this IApplicationBuilder app)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            return app;
         }
     }
 }
